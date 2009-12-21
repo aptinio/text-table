@@ -54,4 +54,5 @@ module Enumerable
     table.foot = table.rows.pop   if options[:last_row_is_foot]
     table
   end
+  alias_method :to_table, :to_text_table unless method_defined? :to_table
 end
