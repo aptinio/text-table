@@ -1,9 +1,14 @@
-module Text
+module Text #:nodoc:
   class Table
-    class Row
-      attr_reader :table, :cells
 
-      def initialize(row_input, table)
+    # A Text::Table::Row belongs to a Text::Table object and can have many Text::Table::Cell objects.
+    # It handles the rendering of rows and inserted separators.
+    #
+    class Row
+      attr_reader :table #:nodoc:
+      attr_reader :cells #:nodoc:
+
+      def initialize(row_input, table) #:nodoc:
         @table = table
         row_input = [row_input].flatten
         @cells = row_input.first == :separator ? :separator : row_input.map do |cell_input|
@@ -11,7 +16,7 @@ module Text
         end
       end
 
-      def to_s
+      def to_s #:nodoc:
         if cells == :separator
           table.separator
         else

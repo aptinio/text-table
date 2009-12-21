@@ -1,16 +1,166 @@
 = text-table
 
-Description goes here.
+A feature-rich, easy-to-use plain text table formatter.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+
+== Introduction
+
+This project was heavily inspired by visionmedia's terminal-table, and to a lesser-extent, by prawn, ruport and hirb.
+I initially wanted to add more features to terminal-table (footer, separators between rows, etc)
+and fix a then alignment issue with spanned columns.
+Instead of forking terminal-table, I've decided to start a new project primarily as an exercise,
+and to be able to model-out the classes differently.
+
+
+== Install
+
+If you haven't yet,
+
+    gem install gemcutter
+    gem tubmle
+
+Then,
+
+    gem install text-table
+
+
+== Calling the <tt>to_text_table</tt> Method
+
+Just call the <tt>to_text_table</tt> method on Arrays (and other Enumerables).
+
+    require 'rubygems'
+    require 'text-table'
+
+    array = [
+      ['Student', 'Mid-Terms', 'Finals'],
+      ['Sam', 94, 93],
+      ['Jane', 92, 99],
+      ['Average', 93, 96]
+    ]
+
+    puts array.to_text_table
+
+    #    +---------+-----------+--------+
+    #    | Student | Mid-Terms | Finals |
+    #    | Sam     | 94        | 93     |
+    #    | Jane    | 92        | 99     |
+    #    | Average | 93        | 96     |
+    #    +---------+-----------+--------+
+
+You could specify that the first row is the table heading.
+
+    puts array.to_text_table(:first_row_is_head => true)
+
+    #    +---------+-----------+--------+
+    #    | Student | Mid-Terms | Finals |
+    #    +---------+-----------+--------+
+    #    | Sam     | 94        | 93     |
+    #    | Jane    | 92        | 99     |
+    #    | Average | 93        | 96     |
+    #    +---------+-----------+--------+
+
+You could also specify that the last row is the table footer.
+
+    puts array.to_text_table(:first_row_is_head => true, :last_row_is_foot => true)
+
+    #    +---------+-----------+--------+
+    #    | Student | Mid-Terms | Finals |
+    #    +---------+-----------+--------+
+    #    | Sam     | 94        | 93     |
+    #    | Jane    | 92        | 99     |
+    #    +---------+-----------+--------+
+    #    | Average | 93        | 96     |
+    #    +---------+-----------+--------+
+
+
+== Creating a New Text::Table Object
+
+You could create a Text::Table object by passing an options hash:
+
+    table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
+
+Or by passing a block:
+
+    table = Text::Table.new do |t|
+      t.head = ['A', 'B']
+      t.rows = [['a1', 'b1']]
+      t.rows << ['a2', 'b2']
+    end
+
+    table.to_s
+
+    #    +----+----+
+    #    | A  | B  |
+    #    +----+----+
+    #    | a1 | b1 |
+    #    | a2 | b2 |
+    #    +----+----+
+
+
+== Aligning Cells and Spanning Columns
+
+Alignment and column span can be specified by passing a cell as a Hash object.
+The acceptable aligments are <tt>:left</tt> (default), <tt>:center</tt> and <tt>:right</tt>.
+
+    table = Text::Table.new do |t|
+      t.head = ['Heading A', 'Heading B']
+      t.rows = []
+      t.rows << ['a1', 'b1']
+      t.rows << ['a2', {:value => 'b2', :align => :right}]
+      t.rows << ['a3', 'b3']
+      t.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
+    end
+
+    puts table
+
+    #    +-----------+-----------+
+    #    | Heading A | Heading B |
+    #    +-----------+-----------+
+    #    | a1        | b1        |
+    #    | a2        |        b2 |
+    #    | a3        | b3        |
+    #    |          a4           |
+    #    +-----------+-----------+
+
+
+== Adding a Separator
+
+You can add a separator by inserting <tt>:separator</tt> symbols between the rows.
+
+    Text::Table.new :rows => [
+      ['a', 'b'],
+      ['c', 'd'],
+      :separator,
+      ['e', 'f'],
+      :separator,
+      ['g', 'h']
+    ]
+
+    #    +---+---+
+    #    | a | b |
+    #    | c | d |
+    #    +---+---+
+    #    | e | f |
+    #    +---+---+
+    #    | g | h |
+    #    +---+---+
+
+
+== Other Options
+
+Cell padding and table boundaries can be modified.
+
+    Text::Table.new :rows => [['a', 'b'], ['c', 'd']],
+                    :horizontal_padding    => 3,
+                    :vertical_boundary     => '=',
+                    :horizontal_boundary   => ':',
+                    :boundary_intersection => 'O'
+
+    #    O=======O=======O
+    #    :   a   :   b   :
+    #    :   c   :   d   :
+    #    O=======O=======O
+
 
 == Copyright
 

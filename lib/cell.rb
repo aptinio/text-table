@@ -1,17 +1,29 @@
-module Text
+module Text #:nodoc:
   class Table
     class Cell
-      attr_accessor :value, :align, :colspan
-      attr_reader :row
 
-      def initialize(options = {})
+      # The object whose <tt>to_s</tt> method is called when rendering the cell.
+      #
+      attr_accessor :value
+      
+      # Text alignment.  Acceptable values are <tt>:left</tt> (default),
+      # <tt>:center</tt> and <tt>:right</tt>
+      #
+      attr_accessor :align
+
+      # Positive integer specifying the number of columns spanned
+      #
+      attr_accessor :colspan
+      attr_reader :row #:nodoc:
+
+      def initialize(options = {}) #:nodoc:
         @value  = options[:value].to_s
         @row     = options[:row]
         @align   = options[:align  ] || :left
         @colspan = options[:colspan] || 1
       end
 
-      def to_s
+      def to_s #:nodoc:
       ([' ' * table.horizontal_padding]*2).join case align
         when :left
           value.ljust cell_width
@@ -22,19 +34,15 @@ module Text
         end
       end
 
-      def table
+      def table #:nodoc:
         row.table
       end
 
-      def column_width
-        (value.length/colspan.to_f).ceil
-      end
-
-      def column_index
+      def column_index #:nodoc:
         row.cells[0...row.cells.index(self)].map(&:colspan).reduce(0, :+)
       end
 
-      def cell_width
+      def cell_width #:nodoc:
         colspan.times.map {|i| table.column_widths[column_index + i]}.reduce(:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
       end
 
