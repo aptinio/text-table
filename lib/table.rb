@@ -224,7 +224,7 @@ module Enumerable
   #      #    +---------+-----------+--------+
   #
   def to_text_table(options = {})
-    table = Text::Table.new :rows => self.to_a
+    table = Text::Table.new :rows => self.to_a.dup
     table.head = table.rows.shift if options[:first_row_is_head]
     table.foot = table.rows.pop   if options[:last_row_is_foot]
     table
