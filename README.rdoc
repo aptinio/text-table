@@ -5,9 +5,13 @@ A feature-rich, easy-to-use plain text table formatter.
 
 == Introduction
 
+Allows you to easily create and format plain text tables,
+useful when working with the terminal
+or when you want to quickly print formatted tables to a dot-matrix printer.
+
 This project was heavily inspired by visionmedia's terminal-table, and to a lesser-extent, by prawn, ruport and hirb.
 I initially wanted to add more features to terminal-table (footer, separators between rows, etc)
-and fix a then alignment issue with spanned columns.
+and to fix a then alignment issue with spanned columns.
 Instead of forking terminal-table, I've decided to start a new project primarily as an exercise,
 and to be able to model-out the classes differently.
 

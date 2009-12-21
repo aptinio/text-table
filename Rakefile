@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "text-table"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A feature-rich, easy-to-use plain text table formatter.}
+    gem.description = %Q{Allows you to easily create and format plain text tables, useful when working with the terminal or when you want to quickly print formatted tables to a dot-matrix printer.}
     gem.email = "aptinio@yahoo.com"
     gem.homepage = "http://github.com/aptinio/text-table"
     gem.authors = ["Aaron Tinio"]
