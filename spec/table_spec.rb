@@ -52,6 +52,8 @@ describe Text::Table do
       EOS
     end
 
+    it 'rows with unequal number of cells'
+
     it 'headers' do
       @table = Text::Table.new :rows => @rows, :head => @head
       @table.to_s.should == <<-EOS.deindent
@@ -455,5 +457,12 @@ describe Text::Table do
         end
       end
     end
+  end
+
+  describe 'should easily allow alignment of' do
+    it 'columns'
+    it 'rows'
+    it 'headers'
+    it 'footers'
   end
 end
