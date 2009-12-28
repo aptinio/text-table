@@ -54,7 +54,10 @@ module Text #:nodoc:
     #  ==== Aligning Cells and Spanning Columns
     #
     #  Alignment and column span can be specified by passing a cell as a Hash object.
-    #  The acceptable aligments are <tt>:left</tt> (default), <tt>:center</tt> and <tt>:right</tt>.
+    #
+    #  The acceptable aligments are <tt>:left</tt>, <tt>:center</tt> and <tt>:right</tt>.
+    #
+    #  Cells and footers are aligned to the left by default, while headers are centered by default.
     #
     #      table = Text::Table.new do |t|
     #        t.head = ['Heading A', 'Heading B']
@@ -131,7 +134,11 @@ module Text #:nodoc:
     end
 
     def text_table_head #:nodoc:
-      Row.new(head, self) if head
+      defaults = {:align => :center}
+      Row.new(
+        head.map {|h| defaults.merge(h.is_a?(Hash) ? h : {:value => h})},
+        self
+      ) if head
     end
 
     def text_table_foot #:nodoc:

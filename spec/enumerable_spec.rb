@@ -38,7 +38,7 @@ describe Enumerable do
     it "to Text::Table, setting first row as head" do
       @arr.to_text_table(:first_row_is_head => true).to_s.should == <<-EOS.deindent
         +----+-----+------+
-        | 11 | 2   | 3333 |
+        | 11 |  2  | 3333 |
         +----+-----+------+
         | 44 | 56  | 6    |
         | 7  | 888 | 99   |

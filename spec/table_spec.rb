@@ -56,7 +56,7 @@ describe Text::Table do
       @table = Text::Table.new :rows => @rows, :head => @head
       @table.to_s.should == <<-EOS.deindent
         +-----+------+------+------+
-        | a   | bb   | ccc  | dddd |
+        |  a  |  bb  | ccc  | dddd |
         +-----+------+------+------+
         | aa  | bbb  | cccc | d    |
         | aaa | bbbb | c    | dd   |
@@ -91,7 +91,7 @@ describe Text::Table do
       @table.horizontal_boundary = ':'
       @table.to_s.should == <<-EOS.deindent
         +------+------+------+------+
-        : a    : bb   : ccc  : dddd :
+        :  a   :  bb  : ccc  : dddd :
         +------+------+------+------+
         : aa   : bbb  : cccc : d    :
         : aaa  : bbbb : c    : dd   :
@@ -105,7 +105,7 @@ describe Text::Table do
       @table.vertical_boundary = '='
       @table.to_s.should == <<-EOS.deindent
         +======+======+======+======+
-        | a    | bb   | ccc  | dddd |
+        |  a   |  bb  | ccc  | dddd |
         +======+======+======+======+
         | aa   | bbb  | cccc | d    |
         | aaa  | bbbb | c    | dd   |
@@ -119,7 +119,7 @@ describe Text::Table do
       @table.boundary_intersection = '*'
       @table.to_s.should == <<-EOS.deindent
         *------*------*------*------*
-        | a    | bb   | ccc  | dddd |
+        |  a   |  bb  | ccc  | dddd |
         *------*------*------*------*
         | aa   | bbb  | cccc | d    |
         | aaa  | bbbb | c    | dd   |
@@ -134,7 +134,7 @@ describe Text::Table do
       @table.boundary_intersection = '++'
       @table.to_s.should == <<-EOS.deindent
         ++------++------++------++------++
-        || a    || bb   || ccc  || dddd ||
+        ||  a   ||  bb  || ccc  || dddd ||
         ++------++------++------++------++
         || aa   || bbb  || cccc || d    ||
         || aaa  || bbbb || c    || dd   ||
@@ -151,7 +151,7 @@ describe Text::Table do
       @table.rows << [{:value => 'x', :colspan => 2, :align => :right}, 'c', 'd']
       @table.to_s.should == <<-EOS.deindent
         ++------++------++------++------++
-        || a    || bb   || ccc  || dddd ||
+        ||  a   ||  bb  || ccc  || dddd ||
         ++------++------++------++------++
         || aa   || bbb  || cccc || d    ||
         || aaa  || bbbb || c    || dd   ||
@@ -165,8 +165,8 @@ describe Text::Table do
 
     describe 'alignment of' do
       describe 'headers to the' do
-        it 'left (default)' do
-          @table = Text::Table.new :rows => @rows, :head => @head
+        it 'left' do
+          @table = Text::Table.new :rows => @rows, :head => @head.map {|h| {:value => h, :align => :left}}
           @table.to_s.should == <<-EOS.deindent
             +-----+------+------+------+
             | a   | bb   | ccc  | dddd |
@@ -176,8 +176,8 @@ describe Text::Table do
             +-----+------+------+------+
           EOS
         end
-        it 'center' do
-          @table = Text::Table.new :rows => @rows, :head => @head.map {|h| {:value => h, :align => :center}}
+        it 'center (default)' do
+          @table = Text::Table.new :rows => @rows, :head => @head
           @table.to_s.should == <<-EOS.deindent
             +-----+------+------+------+
             |  a  |  bb  | ccc  | dddd |
@@ -203,7 +203,7 @@ describe Text::Table do
         it 'left (default)' do
           @table.to_s.should == <<-EOS.deindent
             +------+------+------+------+
-            | a    | bb   | ccc  | dddd |
+            |  a   |  bb  | ccc  | dddd |
             +------+------+------+------+
             | aa   | bbb  | cccc | d    |
             | aaa  | bbbb | c    | dd   |
@@ -216,7 +216,7 @@ describe Text::Table do
           @table = Text::Table.new :rows => @rows.map {|r| r.map {|c| {:value => c, :align => :center}}}, :head => @head, :foot => @foot
           @table.to_s.should == <<-EOS.deindent
             +------+------+------+------+
-            | a    | bb   | ccc  | dddd |
+            |  a   |  bb  | ccc  | dddd |
             +------+------+------+------+
             |  aa  | bbb  | cccc |  d   |
             | aaa  | bbbb |  c   |  dd  |
@@ -229,7 +229,7 @@ describe Text::Table do
           @table = Text::Table.new :rows => @rows.map {|r| r.map {|c| {:value => c, :align => :right}}}, :head => @head, :foot => @foot
           @table.to_s.should == <<-EOS.deindent
             +------+------+------+------+
-            | a    | bb   | ccc  | dddd |
+            |  a   |  bb  | ccc  | dddd |
             +------+------+------+------+
             |   aa |  bbb | cccc |    d |
             |  aaa | bbbb |    c |   dd |
@@ -281,7 +281,7 @@ describe Text::Table do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -295,7 +295,7 @@ describe Text::Table do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2, :align => :center}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -309,7 +309,7 @@ describe Text::Table do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2, :align => :right}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -325,7 +325,7 @@ describe Text::Table do
           @table.rows << ['a', {:value => 'x', :colspan => 3}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -339,7 +339,7 @@ describe Text::Table do
           @table.rows << ['a', {:value => 'x', :colspan => 3, :align => :center}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -353,7 +353,7 @@ describe Text::Table do
           @table.rows << ['a', {:value => 'x', :colspan => 3, :align => :right}]
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -371,7 +371,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -385,7 +385,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 2, :align => :center}, 'c', 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -399,7 +399,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 2, :align => :right}, 'c', 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -415,7 +415,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 3}, 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -429,7 +429,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 3, :align => :center}, 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
@@ -443,7 +443,7 @@ describe Text::Table do
           @table.rows << [{:value => 'x', :colspan => 3, :align => :right}, 'd']
             @table.to_s.should == <<-EOS.deindent
               +------+------+------+------+
-              | a    | bb   | ccc  | dddd |
+              |  a   |  bb  | ccc  | dddd |
               +------+------+------+------+
               | aa   | bbb  | cccc | d    |
               | aaa  | bbbb | c    | dd   |
