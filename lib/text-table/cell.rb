@@ -39,11 +39,11 @@ module Text #:nodoc:
       end
 
       def column_index #:nodoc:
-        row.cells[0...row.cells.index(self)].map(&:colspan).reduce(0, :+)
+        row.cells[0...row.cells.index(self)].map(&:colspan).inject(0, &:+)
       end
 
       def cell_width #:nodoc:
-        colspan.times.map {|i| table.column_widths[column_index + i]}.reduce(:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
+        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
       end
 
     end
