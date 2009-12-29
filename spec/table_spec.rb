@@ -281,89 +281,89 @@ describe Text::Table do
       describe '2 cells aligned to the' do
         it 'left' do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    | b    | x           |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    | b    | x           |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'center' do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2, :align => :center}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    | b    |      x      |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    | b    |      x      |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'right' do
           @table.rows << ['a', 'b', {:value => 'x', :colspan => 2, :align => :right}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    | b    |           x |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    | b    |           x |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
       end
       describe '3 cells aligned to the' do
         it 'left' do
           @table.rows << ['a', {:value => 'x', :colspan => 3}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    | x                  |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    | x                  |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'center' do
           @table.rows << ['a', {:value => 'x', :colspan => 3, :align => :center}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    |         x          |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    |         x          |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'right' do
           @table.rows << ['a', {:value => 'x', :colspan => 3, :align => :right}]
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | a    |                  x |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | a    |                  x |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
       end
     end
@@ -371,89 +371,89 @@ describe Text::Table do
       describe '2 cells aligned to the' do
         it 'left' do
           @table.rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | x           | c    | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | x           | c    | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'center' do
           @table.rows << [{:value => 'x', :colspan => 2, :align => :center}, 'c', 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              |      x      | c    | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            |      x      | c    | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'right' do
           @table.rows << [{:value => 'x', :colspan => 2, :align => :right}, 'c', 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              |           x | c    | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            |           x | c    | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
       end
       describe '3 cells aligned to the' do
         it 'left' do
           @table.rows << [{:value => 'x', :colspan => 3}, 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              | x                  | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            | x                  | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'center' do
           @table.rows << [{:value => 'x', :colspan => 3, :align => :center}, 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              |         x          | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            |         x          | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
         it 'right' do
           @table.rows << [{:value => 'x', :colspan => 3, :align => :right}, 'd']
-            @table.to_s.should == <<-EOS.deindent
-              +------+------+------+------+
-              |  a   |  bb  | ccc  | dddd |
-              +------+------+------+------+
-              | aa   | bbb  | cccc | d    |
-              | aaa  | bbbb | c    | dd   |
-              |                  x | d    |
-              +------+------+------+------+
-              | aaaa | b    | cc   | ddd  |
-              +------+------+------+------+
-            EOS
+          @table.to_s.should == <<-EOS.deindent
+            +------+------+------+------+
+            |  a   |  bb  | ccc  | dddd |
+            +------+------+------+------+
+            | aa   | bbb  | cccc | d    |
+            | aaa  | bbbb | c    | dd   |
+            |                  x | d    |
+            +------+------+------+------+
+            | aaaa | b    | cc   | ddd  |
+            +------+------+------+------+
+          EOS
         end
       end
     end
