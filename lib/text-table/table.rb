@@ -160,7 +160,7 @@ module Text #:nodoc:
 
     def separator #:nodoc:
       ([@boundary_intersection] * 2).join(
-        column_widths.map {|column_width| @vertical_boundary * (column_width + 2*@horizontal_padding)}.join @boundary_intersection
+        column_widths.map {|column_width| @vertical_boundary * (column_width + 2*@horizontal_padding)}.join(@boundary_intersection)
       ) + "\n"
     end
 

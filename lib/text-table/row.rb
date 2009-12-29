@@ -21,7 +21,7 @@ module Text #:nodoc:
           table.separator
         else
           ([table.horizontal_boundary] * 2).join(
-            cells.map(&:to_s).join table.horizontal_boundary
+            cells.map(&:to_s).join(table.horizontal_boundary)
           ) + "\n"
         end
       end
