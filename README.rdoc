@@ -9,6 +9,8 @@ Allows you to easily create and format plain text tables,
 useful when working with the terminal
 or when you want to quickly print formatted tables to a dot-matrix printer.
 
+Text::Table is compatible with Ruby 1.8.6, 1.8.7 and 1.9.1 and includes a comprehensive test suite.
+
 This project was heavily inspired by visionmedia's terminal-table, and to a lesser-extent, by prawn, ruport and hirb.
 I initially wanted to add more features to terminal-table (footer, separators between rows, etc)
 and to fix a then alignment issue with spanned columns.
