@@ -30,9 +30,9 @@ Then,
     gem install text-table
 
 
-== Calling the <tt>to_text_table</tt> Method
+== Calling the <tt>to_table</tt> Method
 
-Just call the <tt>to_text_table</tt> method on Arrays (and other Enumerables).
+Just call the <tt>to_table</tt> method (or <tt>to_text_table</tt> if the former is already defined) on Arrays (and other Enumerables).
 
     require 'rubygems'
     require 'text-table'
@@ -44,7 +44,7 @@ Just call the <tt>to_text_table</tt> method on Arrays (and other Enumerables).
       ['Average', 93, 96]
     ]
 
-    puts array.to_text_table
+    puts array.to_table
 
     #    +---------+-----------+--------+
     #    | Student | Mid-Terms | Finals |
@@ -55,7 +55,7 @@ Just call the <tt>to_text_table</tt> method on Arrays (and other Enumerables).
 
 You could specify that the first row is the table heading.
 
-    puts array.to_text_table(:first_row_is_head => true)
+    puts array.to_table(:first_row_is_head => true)
 
     #    +---------+-----------+--------+
     #    | Student | Mid-Terms | Finals |
@@ -67,7 +67,7 @@ You could specify that the first row is the table heading.
 
 You could also specify that the last row is the table footer.
 
-    puts array.to_text_table(:first_row_is_head => true, :last_row_is_foot => true)
+    puts array.to_table(:first_row_is_head => true, :last_row_is_foot => true)
 
     #    +---------+-----------+--------+
     #    | Student | Mid-Terms | Finals |
