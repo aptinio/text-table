@@ -134,9 +134,8 @@ module Text #:nodoc:
     end
 
     def text_table_head #:nodoc:
-      defaults = {:align => :center}
       Row.new(
-        head.map {|h| defaults.merge(h.is_a?(Hash) ? h : {:value => h})},
+        head.map {|h| hashify(h, {:align => :center})},
         self
       ) if head
     end
@@ -171,6 +170,45 @@ module Text #:nodoc:
       rendered_rows.unshift [separator, text_table_head.to_s] if head
       rendered_rows << [text_table_foot.to_s, separator] if foot
       rendered_rows.join
+    end
+
+    #  Aligns the cells and the footer of a column.
+    #
+    #    table = Text::Table.new :rows => [%w(a bb), %w(aa bbb), %w(aaa b)]
+    #    puts table
+    #
+    #    #    +-----+-----+
+    #    #    | a   | bb  |
+    #    #    | aa  | bbb |
+    #    #    | aaa | b   |
+    #    #    +-----+-----+
+    #
+    #    table.align_column 2, :right
+    #
+    #    #    +-----+-----+
+    #    #    | a   |  bb |
+    #    #    | aa  | bbb |
+    #    #    | aaa |   b |
+    #    #    +-----+-----+
+    #
+    #  Note that headers, spanned cells and cells with explicit alignments are not affected by <tt>align_column</tt>.
+    #
+    def align_column(column_number, alignment)
+      set_alignment = Proc.new do |row, column_number, alignment|
+        cell = row.find do |cell|
+          row[0...row.index(cell)].map {|cell| cell.is_a?(Hash) ? cell[:colspan] || 1 : 1}.inject(0, &:+) == column_number - 1
+        end
+        row[row.index(cell)] = hashify(cell, {:align => alignment}) if cell and not (cell.is_a?(Hash) && cell[:colspan].to_i > 0)
+      end
+      rows.each do |row|
+        set_alignment.call(row, column_number, alignment)
+      end
+      set_alignment.call(foot, column_number, alignment) if foot
+      return self
+    end
+
+    def hashify(cell, defaults = {}) #:nodoc:
+      defaults.merge(cell.is_a?(Hash) ? cell : {:value => cell})
     end
 
   end

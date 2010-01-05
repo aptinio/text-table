@@ -129,6 +129,27 @@ Cells and footers are aligned to the left by default, while headers are centered
     #    |          a4           |
     #    +-----------+-----------+
 
+There's also an easy way to align columns:
+
+    table = Text::Table.new :rows => [%w(a bb), %w(aa bbb), %w(aaa b)]
+    puts table
+
+    #    +-----+-----+
+    #    | a   | bb  |
+    #    | aa  | bbb |
+    #    | aaa | b   |
+    #    +-----+-----+
+
+    table.align_column 2, :right
+
+    #    +-----+-----+
+    #    | a   |  bb |
+    #    | aa  | bbb |
+    #    | aaa |   b |
+    #    +-----+-----+
+
+Note that headers, spanned cells and cells with explicit alignments are not affected by <tt>align_column</tt>.
+
 
 == Adding a Separator
 

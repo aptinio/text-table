@@ -460,7 +460,25 @@ describe Text::Table do
   end
 
   describe 'should easily allow alignment of' do
-    it 'columns'
+    it 'columns' do
+      @table.rows[1][2] = {:value => 'c', :align => :center}
+      @table.rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
+      @table.rows << ['a', 'b', {:value => 'x', :colspan => 2}]
+      @table.align_column 2, :right
+      @table.align_column 3, :right
+      @table.to_s.should == <<-EOS.deindent
+        +------+------+------+------+
+        |  a   |  bb  | ccc  | dddd |
+        +------+------+------+------+
+        | aa   |  bbb | cccc | d    |
+        | aaa  | bbbb |  c   | dd   |
+        | x           |    c | d    |
+        | a    |    b | x           |
+        +------+------+------+------+
+        | aaaa |    b |   cc | ddd  |
+        +------+------+------+------+
+      EOS
+    end
     it 'rows'
     it 'headers'
     it 'footers'
