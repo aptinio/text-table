@@ -23,7 +23,7 @@ and to be able to model-out the classes differently.
 If you haven't yet,
 
     gem install gemcutter
-    gem tubmle
+    gem tumble
 
 Then,
 
