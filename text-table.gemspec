@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{text-table}
-  s.version = "1.1.0"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron Tinio"]
-  s.date = %q{2009-12-28}
+  s.date = %q{2010-01-05}
   s.description = %q{Allows you to easily create and format plain text tables, useful when working with the terminal or when you want to quickly print formatted tables to a dot-matrix printer.}
   s.email = %q{aptinio@yahoo.com}
   s.extra_rdoc_files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "CHANGELOG.rdoc",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -27,12 +28,14 @@ Gem::Specification.new do |s|
      "lib/text-table/cell.rb",
      "lib/text-table/enumerable.rb",
      "lib/text-table/row.rb",
+     "lib/text-table/symbol.rb",
      "lib/text-table/table.rb",
      "spec/cell_spec.rb",
      "spec/enumerable_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
-     "spec/table_spec.rb"
+     "spec/table_spec.rb",
+     "text-table.gemspec"
   ]
   s.homepage = %q{http://github.com/aptinio/text-table}
   s.rdoc_options = ["--charset=UTF-8"]
