@@ -113,7 +113,6 @@ Cells and footers are aligned to the left by default, while headers are centered
 
     table = Text::Table.new do |t|
       t.head = ['Heading A', 'Heading B']
-      t.rows = []
       t.rows << ['a1', 'b1']
       t.rows << ['a2', {:value => 'b2', :align => :right}]
       t.rows << ['a3', 'b3']

@@ -12,6 +12,11 @@ describe Text::Table do
     @table = Text::Table.new :rows => @rows, :head => @head, :foot => @foot
   end
 
+  it 'should initialize with an empty array for its rows as default' do
+    @table = Text::Table.new
+    @table.rows.should == []
+  end
+
   describe 'should allow setting of attributes' do
 
     it 'passed as an options hash' do

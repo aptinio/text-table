@@ -1,13 +1,17 @@
-=== 1.0.1 (2009-12-21)
+=== 1.2.1 (2010-01-05)
 
-* Initial stable release.
+* Initialize a Text::Table with an empty array for its rows as default.
+
+=== 1.2.0 (2010-01-05)
+
+* Added an easy way to align columns.
+* Fixed compatibility with Ruby 1.8.6
 
 === 1.1.0 (2009-12-28)
 
 * Centered headers by default.
 * Revamped specs and made them more extensive.
 
-=== 1.2.0 (2010-01-05)
+=== 1.0.1 (2009-12-21)
 
-* Added an easy way to align columns.
-* Fixed compatibility with Ruby 1.8.6
+* Initial stable release.

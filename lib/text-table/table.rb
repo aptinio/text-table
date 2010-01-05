@@ -61,7 +61,6 @@ module Text #:nodoc:
     #
     #      table = Text::Table.new do |t|
     #        t.head = ['Heading A', 'Heading B']
-    #        t.rows = []
     #        t.rows << ['a1', 'b1']
     #        t.rows << ['a2', {:value => 'b2', :align => :right}]
     #        t.rows << ['a3', 'b3']
@@ -124,7 +123,7 @@ module Text #:nodoc:
       @boundary_intersection = options[:boundary_intersection] || '+'
       @horizontal_padding    = options[:horizontal_padding   ] || 1
       @head = options[:head]
-      @rows = options[:rows]
+      @rows = options[:rows] || []
       @foot = options[:foot]
       yield self if block_given?
     end
