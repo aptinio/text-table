@@ -11,12 +11,6 @@ or when you want to quickly print formatted tables to a dot-matrix printer.
 
 Text::Table is compatible with Ruby 1.8.6, 1.8.7 and 1.9.1 and includes a comprehensive test suite.
 
-This project was heavily inspired by visionmedia's terminal-table, and to a lesser-extent, by prawn, ruport and hirb.
-I initially wanted to add more features to terminal-table (footer, separators between rows, etc)
-and to fix a then alignment issue with spanned columns.
-Instead of forking terminal-table, I've decided to start a new project primarily as an exercise,
-and to be able to model-out the classes differently.
-
 
 == Install
 
@@ -189,6 +183,13 @@ Cell padding and table boundaries can be modified.
     #    :   a   :   b   :
     #    :   c   :   d   :
     #    O=======O=======O
+
+
+== Special Thanks
+
+This project was inspired by visionmedia's terminal-table, and to a lesser-extent, by prawn, ruport and hirb.
+I've decided to start a new project, primarily as an exercise, and to be able to model-out the classes differently.
+Thanks to the authors and contributors of these projects.
 
 
 == Copyright
