@@ -14,13 +14,6 @@ Text::Table is compatible with Ruby 1.8.6, 1.8.7 and 1.9.1 and includes a compre
 
 == Install
 
-If you haven't yet,
-
-    gem install gemcutter
-    gem tumble
-
-Then,
-
     gem install text-table
 
 
