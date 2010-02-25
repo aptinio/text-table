@@ -10,7 +10,8 @@ begin
     gem.email = "aptinio@yahoo.com"
     gem.homepage = "http://github.com/aptinio/text-table"
     gem.authors = ["Aaron Tinio"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency 'rspec'
+    gem.add_development_dependency 'jeweler'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
