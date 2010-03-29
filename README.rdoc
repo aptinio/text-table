@@ -185,6 +185,12 @@ I've decided to start a new project, primarily as an exercise, and to be able to
 Thanks to the authors and contributors of these projects.
 
 
+== Contributors
+
+* Claudio Bustos (clbustos[link:http://github.com/clbustos])
+  * Fix Ruby 1.9 warnings on shadowed outer local variables
+
+
 == Copyright
 
 Copyright (c) 2009 Aaron Tinio. See LICENSE for details.

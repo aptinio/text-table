@@ -1,3 +1,7 @@
+=== 1.2.2 (2010-03-29)
+
+* Fix Ruby 1.9 warnings on shadowed outer local variables (thanks Claudio Bustos)
+
 === 1.2.1 (2010-01-05)
 
 * Initialize a Text::Table with an empty array for its rows as default.
