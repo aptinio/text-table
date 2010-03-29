@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{text-table}
-  s.version = "1.2.1"
+  s.version = "1.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron Tinio"]
-  s.date = %q{2010-02-25}
+  s.date = %q{2010-03-29}
   s.description = %q{Allows you to easily create and format plain text tables, useful when working with the terminal or when you want to quickly print formatted tables to a dot-matrix printer.}
   s.email = %q{aptinio@yahoo.com}
   s.extra_rdoc_files = [
