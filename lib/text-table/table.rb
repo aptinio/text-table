@@ -193,11 +193,11 @@ module Text #:nodoc:
     #  Note that headers, spanned cells and cells with explicit alignments are not affected by <tt>align_column</tt>.
     #
     def align_column(column_number, alignment)
-      set_alignment = Proc.new do |row, column_number, alignment|
-        cell = row.find do |cell|
-          row[0...row.index(cell)].map {|cell| cell.is_a?(Hash) ? cell[:colspan] || 1 : 1}.inject(0, &:+) == column_number - 1
+      set_alignment = Proc.new do |row, column_number_block, alignment_block|
+        cell = row.find do |cell_row|
+          row[0...row.index(cell_row)].map {|c| c.is_a?(Hash) ? c[:colspan] || 1 : 1}.inject(0, &:+) == column_number_block - 1
         end
-        row[row.index(cell)] = hashify(cell, {:align => alignment}) if cell and not (cell.is_a?(Hash) && cell[:colspan].to_i > 0)
+        row[row.index(cell)] = hashify(cell, {:align => alignment_block}) if cell and not(cell.is_a?(Hash) && cell[:colspan].to_i > 0)
       end
       rows.each do |row|
         set_alignment.call(row, column_number, alignment)
