@@ -187,7 +187,7 @@ Thanks to the authors and contributors of these projects.
 
 == Contributors
 
-* Claudio Bustos (clbustos[link:http://github.com/clbustos])
+* Claudio Bustos (clbustos[http://github.com/clbustos])
   * Fix Ruby 1.9 warnings on shadowed outer local variables
 
 
