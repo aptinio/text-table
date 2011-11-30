@@ -29,6 +29,10 @@ module Text #:nodoc:
     #
     attr_accessor :horizontal_padding
 
+    # An object that responds to #call which formats the text after alignment has occured.
+    # Useful for colorizing
+    attr_accessor :formatter
+
     #  You could create a Text::Table object by passing an options hash:
     #
     #      table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
@@ -125,22 +129,31 @@ module Text #:nodoc:
       @head = options[:head]
       @rows = options[:rows] || []
       @foot = options[:foot]
+      @formatter = options[:formatter] || Proc.new do |value,column_index,row_index|
+        value
+      end
+
       yield self if block_given?
     end
 
     def text_table_rows #:nodoc:
-      rows.to_a.map {|row_input| Row.new(row_input, self)}
+      row_arr = []
+      rows.to_a.each_with_index do |row_input,ri|
+        row_arr << Row.new(row_input, self, ri)
+      end
+      row_arr
     end
 
     def text_table_head #:nodoc:
       Row.new(
         head.map {|h| hashify(h, {:align => :center})},
-        self
+        self,
+        -1
       ) if head
     end
 
     def text_table_foot #:nodoc:
-      Row.new(foot, self) if foot
+      Row.new(foot, self,-2) if foot
     end
 
     def all_text_table_rows #:nodoc:
@@ -165,8 +178,9 @@ module Text #:nodoc:
     # Renders a pretty plain-text table.
     #
     def to_s
-      rendered_rows = [separator] + text_table_rows.map(&:to_s) + [separator]
+      rendered_rows = []
       rendered_rows.unshift [separator, text_table_head.to_s] if head
+      rendered_rows += [separator] + text_table_rows.map(&:to_s) + [separator]
       rendered_rows << [text_table_foot.to_s, separator] if foot
       rendered_rows.join
     end

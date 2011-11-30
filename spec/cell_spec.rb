@@ -20,5 +20,15 @@ describe Text::Table::Cell do
     @table.text_table_rows.first.cells[2].column_index.should == 3
   end
 
+  it "should take formatting" do
+    @table.formatter = Proc.new do |val,ci,ri|
+      "#{val} #{ci} #{ri}"
+    end
+
+    @cell.to_s.strip.should == "1 0 0"
+    @table.text_table_rows.first.cells[1].to_s.strip.should == '2 1 0'
+    @table.text_table_rows.first.cells[2].to_s.strip.should == '3 3 0'
+  end
+
 end
 
