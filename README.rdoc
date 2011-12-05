@@ -72,13 +72,12 @@ You could create a Text::Table object by passing an options hash:
 
     table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
 
-Or by passing a block:
+Or by editing it after the fact:
 
-    table = Text::Table.new do |t|
-      t.head = ['A', 'B']
-      t.rows = [['a1', 'b1']]
-      t.rows << ['a2', 'b2']
-    end
+    table = Text::Table.new
+    table.head = ['A', 'B']
+    table.rows = [['a1', 'b1']]
+    table.rows << ['a2', 'b2']
 
     table.to_s
 
@@ -98,13 +97,12 @@ The acceptable aligments are <tt>:left</tt>, <tt>:center</tt> and <tt>:right</tt
 
 Cells and footers are aligned to the left by default, while headers are centered by default.
 
-    table = Text::Table.new do |t|
-      t.head = ['Heading A', 'Heading B']
-      t.rows << ['a1', 'b1']
-      t.rows << ['a2', {:value => 'b2', :align => :right}]
-      t.rows << ['a3', 'b3']
-      t.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
-    end
+    table = Text::Table.new
+    table.head = ['Heading A', 'Heading B']
+    table.rows << ['a1', 'b1']
+    table.rows << ['a2', {:value => 'b2', :align => :right}]
+    table.rows << ['a3', 'b3']
+    table.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
 
     puts table
 
@@ -177,6 +175,29 @@ Cell padding and table boundaries can be modified.
     #    :   c   :   d   :
     #    O=======O=======O
 
+== Formatting the cells
+
+If you want to add color into the cells you can edit them after the calculations for width
+have already been made
+
+    data = [
+      [*1..4],
+      [*5..8],
+      [*9..12],
+      [*13..16]
+    ]
+
+    table = Text::Table.new :rows => data, :head => %w{one two three four}
+    table.formatter = Proc.new do |val,column_index,row_index|
+      fg = (column_index+row_index)%2 == 0 ? :green : :white
+      bg = column_index%2 == 1 ? :red : :blue
+      CLIColorize.colorize(val, :foreground => fg, :background => bg)
+    end
+
+    puts table
+
+This will make every other column red or blue, and every other cell green or white.
+
 
 == Special Thanks
 
@@ -189,6 +210,9 @@ Thanks to the authors and contributors of these projects.
 
 * Claudio Bustos (clbustos[http://github.com/clbustos])
   * Fix Ruby 1.9 warnings on shadowed outer local variables
+
+* Tal Atlas (talby[http://github.com/talby])
+  * Added formatter support
 
 
 == Copyright

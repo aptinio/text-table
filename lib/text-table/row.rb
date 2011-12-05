@@ -6,14 +6,30 @@ module Text #:nodoc:
     #
     class Row
       attr_reader :table #:nodoc:
-      attr_reader :cells #:nodoc:
+      attr_reader :row_index #:nodoc:
+      attr_reader :row_input #:nodoc:
 
-      def initialize(row_input, table) #:nodoc:
+      def initialize(row_input, table, ri) #:nodoc:
         @table = table
-        row_input = [row_input].flatten
-        @cells = row_input.first == :separator ? :separator : row_input.map do |cell_input|
-          Cell.new(cell_input.is_a?(Hash) ? cell_input.merge(:row => self) : {:value => cell_input}.merge(:row => self))
+        @row_index = ri
+        @row_input = [row_input].flatten
+      end
+
+      def cells #:nodoc:
+        if row_input.first == :separator
+          cells = :separator
+        else
+          cells = []
+          row_input.each_with_index do |cell_input,ci|
+            opts = cell_input.is_a?(Hash) ? cell_input : {:value => cell_input}
+            opts[:row] = self
+            opts[:ri] = row_index
+            opts[:ci] = ci
+            cells << Cell.new(opts)
+          end
         end
+
+        cells
       end
 
       def to_s #:nodoc:
