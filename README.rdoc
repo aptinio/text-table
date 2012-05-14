@@ -1,4 +1,4 @@
-= text-table
+= text-table {<img src="https://secure.travis-ci.org/akm/text-table.png" />}[http://travis-ci.org/akm/text-table]
 
 A feature-rich, easy-to-use plain text table formatter.
 

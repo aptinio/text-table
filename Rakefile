@@ -1,46 +1,38 @@
 require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "text-table"
-    gem.summary = %Q{A feature-rich, easy-to-use plain text table formatter.}
-    gem.description = %Q{Allows you to easily create and format plain text tables, useful when working with the terminal or when you want to quickly print formatted tables to a dot-matrix printer.}
-    gem.email = "aptinio@yahoo.com"
-    gem.homepage = "http://github.com/aptinio/text-table"
-    gem.authors = ["Aaron Tinio"]
-    gem.add_development_dependency 'rspec'
-    gem.add_development_dependency 'jeweler'
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  gem.name = "text-table"
+  gem.summary = %Q{A feature-rich, easy-to-use plain text table formatter.}
+  gem.description = %Q{Allows you to easily create and format plain text tables, useful when working with the terminal or when you want to quickly print formatted tables to a dot-matrix printer.}
+  gem.email = "aptinio@yahoo.com"
+  gem.homepage = "http://github.com/aptinio/text-table"
+  gem.authors = ["Aaron Tinio"]
+  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'jeweler'
+  # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
+RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
 
-task :spec => :check_dependencies
-
 task :default => :spec
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "text-table #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+task :test => :spec # for rubygems-test
