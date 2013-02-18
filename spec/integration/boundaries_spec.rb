@@ -4,10 +4,12 @@ describe Text::Table do
   let(:table) { Text::Table.new :rows => @rows, :head => @head, :foot => @foot,
                 :horizontal_boundary => horizontal_boundary,
                 :vertical_boundary => vertical_boundary,
-                :boundary_intersection => boundary_intersection }
+                :boundary_intersection => boundary_intersection,
+                :horizontal_padding => horizontal_padding }
   let(:horizontal_boundary)   { nil }
   let(:vertical_boundary)     { nil }
   let(:boundary_intersection) { nil }
+  let(:horizontal_padding) { nil }
   subject { table.to_s }
 
   describe 'horizontal boundaries' do
@@ -91,6 +93,21 @@ describe Text::Table do
         *------*------*------*------*
         | aaaa | b    | cc   | ddd  |
         *------*------*------*------*
+    }) }
+  end
+
+  describe 'horizantal padding when 3 spaces' do
+    let(:horizontal_padding) { 3 }
+
+    it { should == deindent(%q{
+      +----------+----------+----------+----------+
+      |    a     |    bb    |   ccc    |   dddd   |
+      +----------+----------+----------+----------+
+      |   aa     |   bbb    |   cccc   |   d      |
+      |   aaa    |   bbbb   |   c      |   dd     |
+      +----------+----------+----------+----------+
+      |   aaaa   |   b      |   cc     |   ddd    |
+      +----------+----------+----------+----------+
     }) }
   end
 end
