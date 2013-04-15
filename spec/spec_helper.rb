@@ -5,11 +5,8 @@ require 'spec'
 require 'spec/autorun'
 
 Spec::Runner.configure do |config|
-  
 end
 
-class String
-  def deindent
-    gsub /^[ \t]*/, ''
-  end
+def deindent(table)
+  table.gsub(/^\s*/, '')
 end
