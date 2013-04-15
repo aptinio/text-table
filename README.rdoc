@@ -185,6 +185,9 @@ Thanks to the authors and contributors of these projects.
 * Claudio Bustos (clbustos[http://github.com/clbustos])
   * Fix Ruby 1.9 warnings on shadowed outer local variables
 
+* Kaoru Maeda (mad-p[https://github.com/mad-p])
+  * Fixed performance issue with large number of rows
+
 
 == Copyright
 

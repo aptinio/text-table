@@ -1,6 +1,10 @@
+=== 1.2.3 (2013-04-15)
+
+* Fixed performance issue with large number of rows (thanks Kaoru Maeda)
+
 === 1.2.2 (2010-03-29)
 
-* Fix Ruby 1.9 warnings on shadowed outer local variables (thanks Claudio Bustos)
+* Fixed Ruby 1.9 warnings on shadowed outer local variables (thanks Claudio Bustos)
 
 === 1.2.1 (2010-01-05)
 
