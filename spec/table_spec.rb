@@ -27,6 +27,18 @@ describe Text::Table do
       @table.horizontal_padding.should == 2
     end
 
+    it 'inside a block' do
+      @table = Text::Table.new do |t|
+        t.rows = @rows
+      end
+      @table.rows.should == @rows
+
+      @table = Text::Table.new do |t|
+        t.horizontal_padding = 2
+      end
+      @table.horizontal_padding.should == 2
+    end
+
   end
 
   describe 'should properly render' do
