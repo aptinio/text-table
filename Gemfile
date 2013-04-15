@@ -3,4 +3,4 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rake'
-gem 'rspec', '~> 1'
+gem 'rspec'
