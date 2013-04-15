@@ -17,12 +17,32 @@ Text::Table is compatible with Ruby 1.8.6, 1.8.7 and 1.9.1 and includes a compre
     gem install text-table
 
 
+== Examples
+
+    require 'text-table'
+
+    table = Text::Table.new
+    table.head = ['A', 'B']
+    table.rows = [['a1', 'b1']]
+    table.rows << ['a2', 'b2']
+
+    table.to_s
+
+    #    +----+----+
+    #    | A  | B  |
+    #    +----+----+
+    #    | a1 | b1 |
+    #    | a2 | b2 |
+    #    +----+----+
+
+You can also pass an options hash when instantiating a Text::Table:
+
+    table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
+
+
 == Calling the <tt>to_table</tt> Method
 
 Just call the <tt>to_table</tt> method (or <tt>to_text_table</tt> if the former is already defined) on Arrays (and other Enumerables).
-
-    require 'rubygems'
-    require 'text-table'
 
     array = [
       ['Student', 'Mid-Terms', 'Finals'],
@@ -66,30 +86,6 @@ You could also specify that the last row is the table footer.
     #    +---------+-----------+--------+
 
 
-== Creating a New Text::Table Object
-
-You could create a Text::Table object by passing an options hash:
-
-    table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
-
-Or by passing a block:
-
-    table = Text::Table.new do |t|
-      t.head = ['A', 'B']
-      t.rows = [['a1', 'b1']]
-      t.rows << ['a2', 'b2']
-    end
-
-    table.to_s
-
-    #    +----+----+
-    #    | A  | B  |
-    #    +----+----+
-    #    | a1 | b1 |
-    #    | a2 | b2 |
-    #    +----+----+
-
-
 == Aligning Cells and Spanning Columns
 
 Alignment and column span can be specified by passing a cell as a Hash object.
@@ -98,13 +94,12 @@ The acceptable aligments are <tt>:left</tt>, <tt>:center</tt> and <tt>:right</tt
 
 Cells and footers are aligned to the left by default, while headers are centered by default.
 
-    table = Text::Table.new do |t|
-      t.head = ['Heading A', 'Heading B']
-      t.rows << ['a1', 'b1']
-      t.rows << ['a2', {:value => 'b2', :align => :right}]
-      t.rows << ['a3', 'b3']
-      t.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
-    end
+    table = Text::Table.new
+    table.head = ['Heading A', 'Heading B']
+    table.rows << ['a1', 'b1']
+    table.rows << ['a2', {:value => 'b2', :align => :right}]
+    table.rows << ['a3', 'b3']
+    table.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
 
     puts table
 
