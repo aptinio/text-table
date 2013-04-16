@@ -6,7 +6,7 @@ describe Text::Table, 'performance' do
     base = time_to_render_num_of_rows 30
     time = time_to_render_num_of_rows 300
 
-    time.should_not > base * 12
+    time.should_not > base * 13
   end
 
   def time_to_render_num_of_rows(num)
