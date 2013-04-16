@@ -13,7 +13,7 @@ describe Text::Table, 'performance' do
     GC.start
 
     Benchmark.realtime do
-      Text::Table.new(rows: Array.new(num)).to_s
+      Text::Table.new(:rows => Array.new(num)).to_s
     end
   end
 end
