@@ -201,6 +201,7 @@ module Text #:nodoc:
         row[row.index(cell)] = hashify(cell, {:align => alignment_block}) if cell and not(cell.is_a?(Hash) && cell[:colspan].to_i > 0)
       end
       rows.each do |row|
+        next if row == :separator
         set_alignment.call(row, column_number, alignment)
       end
       set_alignment.call(foot, column_number, alignment) if foot
