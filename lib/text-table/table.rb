@@ -212,5 +212,8 @@ module Text #:nodoc:
       defaults.merge(cell.is_a?(Hash) ? cell : {:value => cell})
     end
 
+    def inspect
+      "#<#{self.class}:0x#{self.__id__.to_s(16)}>"
+    end
   end
 end
