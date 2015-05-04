@@ -110,4 +110,14 @@ describe Text::Table do
       +----------+----------+----------+----------+
     }) }
   end
+
+  describe 'markdown style table' do
+    subject { table.to_markdown }
+    it { should == deindent(%q{
+      |  a   |  bb  | ccc  | dddd |
+      | ---- | ---- | ---- | ---- |
+      | aa   | bbb  | cccc | d    |
+      | aaa  | bbbb | c    | dd   |
+    }) }
+  end
 end
