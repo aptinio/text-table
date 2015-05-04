@@ -172,6 +172,19 @@ module Text #:nodoc:
       rendered_rows.join
     end
 
+    # Renders a markdown styled table
+    def to_markdown
+      b = @boundary_intersection
+      @boundary_intersection = '|'
+
+      rendered_rows = [separator] + text_table_rows.map(&:to_s)
+      rendered_rows.unshift [text_table_head.to_s] if head
+
+      @boundary_intersection = b
+
+      rendered_rows.join.gsub('|-', '| ').gsub('-|', ' |')
+    end
+
     #  Aligns the cells and the footer of a column.
     #
     #    table = Text::Table.new :rows => [%w(a bb), %w(aa bbb), %w(aaa b)]
