@@ -153,7 +153,7 @@ module Text #:nodoc:
     def column_widths #:nodoc:
       @column_widths ||= \
       all_text_table_rows.reject {|row| row.cells == :separator}.map do |row|
-        row.cells.map {|cell| [(cell.value.length/cell.colspan.to_f).ceil] * cell.colspan}.flatten
+        row.cells.map {|cell| [(cell.width/cell.colspan.to_f).ceil] * cell.colspan}.flatten
       end.transpose.map(&:max)
     end
 
