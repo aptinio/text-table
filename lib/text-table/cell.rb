@@ -5,7 +5,7 @@ module Text #:nodoc:
       # The object whose <tt>to_s</tt> method is called when rendering the cell.
       #
       attr_accessor :value
-      
+
       # Text alignment.  Acceptable values are <tt>:left</tt> (default),
       # <tt>:center</tt> and <tt>:right</tt>
       #
@@ -21,6 +21,10 @@ module Text #:nodoc:
         @row     = options[:row]
         @align   = options[:align  ] || :left
         @colspan = options[:colspan] || 1
+      end
+
+      def text_width
+        value.length + value.chars.count { |c| c.bytesize > 2 }
       end
 
       def to_s #:nodoc:
@@ -43,7 +47,7 @@ module Text #:nodoc:
       end
 
       def cell_width #:nodoc:
-        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
+        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length) - text_width + value.length
       end
 
     end
