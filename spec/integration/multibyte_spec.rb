@@ -4,10 +4,10 @@ describe Text::Table do
   let(:table) { Text::Table.new :rows => rows }
   let(:rows) do
     [
-      %w(Hello),
-      %w(こんにちは),
-      %w(مرحبا),
-      %w(안녕하세요),
+      ["Hello"],
+      ["こんにちは"],
+      ["مرحبا"],
+      ["안녕하세요"],
     ]
   end
 
