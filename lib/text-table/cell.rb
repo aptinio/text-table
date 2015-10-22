@@ -23,14 +23,20 @@ module Text #:nodoc:
         @colspan = options[:colspan] || 1
       end
 
+      # visible width: without terminal escapes
+      def width #:nodoc:
+        value.gsub(/\033\[[^m]+m/, '').length
+      end
+
       def to_s #:nodoc:
+        invisible = value.length - width
       ([' ' * table.horizontal_padding]*2).join case align
         when :left
-          value.ljust cell_width
+          value.ljust cell_width+invisible
         when :right
-          value.rjust cell_width
+          value.rjust cell_width+invisible
         when :center
-          value.center cell_width
+          value.center cell_width+invisible
         end
       end
 

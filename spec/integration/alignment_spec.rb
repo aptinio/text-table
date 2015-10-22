@@ -51,6 +51,56 @@ describe Text::Table do
     end
   end
 
+  describe 'colorized cell alignment' do
+    let(:rows) { @rows.map { |row| row.map { |cell| { :value => colorize(cell, :red), :align => align } } } }
+    subject { decolor(table.to_s) }
+
+    context 'when left' do
+      let(:align) { :left }
+
+      it { should == deindent(%q{
+        +------+------+------+------+
+        |  a   |  bb  | ccc  | dddd |
+        +------+------+------+------+
+        | aa   | bbb  | cccc | d    |
+        | aaa  | bbbb | c    | dd   |
+        +------+------+------+------+
+        | aaaa | b    | cc   | ddd  |
+        +------+------+------+------+
+      }) }
+    end
+
+    context 'when center' do
+      let(:align) { :center }
+
+      it { should == deindent(%q{
+        +------+------+------+------+
+        |  a   |  bb  | ccc  | dddd |
+        +------+------+------+------+
+        |  aa  | bbb  | cccc |  d   |
+        | aaa  | bbbb |  c   |  dd  |
+        +------+------+------+------+
+        | aaaa | b    | cc   | ddd  |
+        +------+------+------+------+
+      }) }
+    end
+
+    context 'when right' do
+      let(:align) { :right }
+
+      it { should == deindent(%q{
+        +------+------+------+------+
+        |  a   |  bb  | ccc  | dddd |
+        +------+------+------+------+
+        |   aa |  bbb | cccc |    d |
+        |  aaa | bbbb |    c |   dd |
+        +------+------+------+------+
+        | aaaa | b    | cc   | ddd  |
+        +------+------+------+------+
+      }) }
+    end
+  end
+
   describe 'cell alignment' do
     let(:rows) { @rows.map { |row| row.map { |cell| { :value => cell, :align => align } } } }
 
