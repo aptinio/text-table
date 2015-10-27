@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'integration_helper'
 
 describe Text::Table do
