@@ -24,17 +24,27 @@ module Text #:nodoc:
       end
 
       def text_width
-        value.length + value.chars.count { |c| c.bytesize > 2 }
+        char_count + value.chars.count { |c| c.bytesize > 2 }
+      end
+
+      def char_count
+        @char_count ||= value.split('').length
       end
 
       def to_s #:nodoc:
+        if RUBY_VERSION < '1.9'
+          len = value.bytesize + cell_width - text_width
+        else
+          len = value.length + cell_width - text_width
+        end
+
       ([' ' * table.horizontal_padding]*2).join case align
         when :left
-          value.ljust cell_width
+          value.ljust len
         when :right
-          value.rjust cell_width
+          value.rjust len
         when :center
-          value.center cell_width
+          value.center len
         end
       end
 
@@ -47,7 +57,7 @@ module Text #:nodoc:
       end
 
       def cell_width #:nodoc:
-        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length) - text_width + value.length
+        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
       end
 
     end
