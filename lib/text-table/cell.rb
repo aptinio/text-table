@@ -5,7 +5,7 @@ module Text #:nodoc:
       # The object whose <tt>to_s</tt> method is called when rendering the cell.
       #
       attr_accessor :value
-      
+
       # Text alignment.  Acceptable values are <tt>:left</tt> (default),
       # <tt>:center</tt> and <tt>:right</tt>
       #
@@ -23,14 +23,28 @@ module Text #:nodoc:
         @colspan = options[:colspan] || 1
       end
 
+      def text_width
+        char_count + value.chars.count { |c| c.bytesize > 2 }
+      end
+
+      def char_count
+        @char_count ||= value.split('').length
+      end
+
       def to_s #:nodoc:
+        if RUBY_VERSION < '1.9'
+          len = value.bytesize + cell_width - text_width
+        else
+          len = value.length + cell_width - text_width
+        end
+
       ([' ' * table.horizontal_padding]*2).join case align
         when :left
-          value.ljust cell_width
+          value.ljust len
         when :right
-          value.rjust cell_width
+          value.rjust len
         when :center
-          value.center cell_width
+          value.center len
         end
       end
 
