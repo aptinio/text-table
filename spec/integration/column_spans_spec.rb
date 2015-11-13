@@ -13,7 +13,7 @@ describe Text::Table do
       context 'aligned to the left' do
         let(:align) { :left }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -23,13 +23,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'center aligned' do
         let(:align) { :center }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -39,13 +39,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'aligned to the right' do
         let(:align) { :right }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -55,7 +55,7 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
     end
 
@@ -67,7 +67,7 @@ describe Text::Table do
       context 'aligned to the left' do
         let(:align) { :left }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -77,13 +77,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'center aligned' do
         let(:align) { :center }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -93,13 +93,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'aligned to the right' do
         let(:align) { :right }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -109,7 +109,7 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
     end
   end
@@ -123,7 +123,7 @@ describe Text::Table do
       context 'aligned to the left' do
         let(:align) { :left }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -133,13 +133,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'center aligned' do
         let(:align) { :center }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -149,13 +149,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'aligned to the right' do
         let(:align) { :right }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -165,7 +165,7 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
     end
 
@@ -177,7 +177,7 @@ describe Text::Table do
       context 'aligned to the left' do
         let(:align) { :left }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -187,13 +187,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'center aligned' do
         let(:align) { :center }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -203,13 +203,13 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
 
       context 'aligned to the right' do
         let(:align) { :right }
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           +------+------+------+------+
           |  a   |  bb  | ccc  | dddd |
           +------+------+------+------+
@@ -219,7 +219,7 @@ describe Text::Table do
           +------+------+------+------+
           | aaaa | b    | cc   | ddd  |
           +------+------+------+------+
-        }) }
+        })) }
       end
     end
   end

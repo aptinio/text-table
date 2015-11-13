@@ -15,13 +15,13 @@ describe Text::Table do
   subject { table.to_s }
 
   describe 'rows' do
-    it { should == deindent(%q{
+    it { is_expected.to eq(deindent(%q{
       +------------+
       | Hello      |
       | こんにちは |
       | مرحبا      |
       | 안녕하세요 |
       +------------+
-    }) }
+    })) }
   end
 end

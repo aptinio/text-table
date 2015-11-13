@@ -7,7 +7,7 @@ describe Text::Table::Cell do
   end
 
   it "should be left justified by default" do
-    @cell.align.should == :left
+    expect(@cell.align).to eq(:left)
   end
 
   it "should span 1 column by default" do
@@ -15,9 +15,9 @@ describe Text::Table::Cell do
   end
 
   it "should return correct column index" do
-    @table.text_table_rows.first.cells[0].column_index.should == 0
-    @table.text_table_rows.first.cells[1].column_index.should == 1
-    @table.text_table_rows.first.cells[2].column_index.should == 3
+    expect(@table.text_table_rows.first.cells[0].column_index).to eq(0)
+    expect(@table.text_table_rows.first.cells[1].column_index).to eq(1)
+    expect(@table.text_table_rows.first.cells[2].column_index).to eq(3)
   end
 
 end

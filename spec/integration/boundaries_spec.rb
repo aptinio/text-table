@@ -16,7 +16,7 @@ describe Text::Table do
     context 'when ":"' do
       let(:horizontal_boundary) { ':' }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+------+
         :  a   :  bb  : ccc  : dddd :
         +------+------+------+------+
@@ -25,14 +25,14 @@ describe Text::Table do
         +------+------+------+------+
         : aaaa : b    : cc   : ddd  :
         +------+------+------+------+
-      }) }
+      })) }
     end
 
     context 'when "||" and boundary intersection is "++"' do
       let(:horizontal_boundary) { '||' }
       let(:boundary_intersection) { '++' }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         ++------++------++------++------++
         ||  a   ||  bb  || ccc  || dddd ||
         ++------++------++------++------++
@@ -41,7 +41,7 @@ describe Text::Table do
         ++------++------++------++------++
         || aaaa || b    || cc   || ddd  ||
         ++------++------++------++------++
-      }) }
+      })) }
 
       context 'with spanned cells' do
         before do
@@ -49,7 +49,7 @@ describe Text::Table do
           table.rows << [{ :value => 'x', :colspan => 2, :align => :right }, 'c', 'd']
         end
 
-        it { should == deindent(%q{
+        it { is_expected.to eq(deindent(%q{
           ++------++------++------++------++
           ||  a   ||  bb  || ccc  || dddd ||
           ++------++------++------++------++
@@ -60,7 +60,7 @@ describe Text::Table do
           ++------++------++------++------++
           || aaaa || b    || cc   || ddd  ||
           ++------++------++------++------++
-        }) }
+        })) }
       end
 
     end
@@ -69,7 +69,7 @@ describe Text::Table do
   describe 'vertical boundaries when "="' do
     let(:vertical_boundary) { '=' }
 
-    it { should == deindent(%q{
+    it { is_expected.to eq(deindent(%q{
       +======+======+======+======+
       |  a   |  bb  | ccc  | dddd |
       +======+======+======+======+
@@ -78,13 +78,13 @@ describe Text::Table do
       +======+======+======+======+
       | aaaa | b    | cc   | ddd  |
       +======+======+======+======+
-    }) }
+    })) }
   end
 
   describe 'boundary intersections when "*"' do
     let(:boundary_intersection) { '*' }
 
-    it { should == deindent(%q{
+    it { is_expected.to eq(deindent(%q{
         *------*------*------*------*
         |  a   |  bb  | ccc  | dddd |
         *------*------*------*------*
@@ -93,13 +93,13 @@ describe Text::Table do
         *------*------*------*------*
         | aaaa | b    | cc   | ddd  |
         *------*------*------*------*
-    }) }
+    })) }
   end
 
   describe 'horizantal padding when 3 spaces' do
     let(:horizontal_padding) { 3 }
 
-    it { should == deindent(%q{
+    it { is_expected.to eq(deindent(%q{
       +----------+----------+----------+----------+
       |    a     |    bb    |   ccc    |   dddd   |
       +----------+----------+----------+----------+
@@ -108,6 +108,6 @@ describe Text::Table do
       +----------+----------+----------+----------+
       |   aaaa   |   b      |   cc     |   ddd    |
       +----------+----------+----------+----------+
-    }) }
+    })) }
   end
 end
