@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'integration_helper'
 
-describe Text::Table do
+RSpec.describe Text::Table do
   let(:table) { Text::Table.new :rows => rows }
   let(:rows) do
     [

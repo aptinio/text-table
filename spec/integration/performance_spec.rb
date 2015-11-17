@@ -1,7 +1,6 @@
-require 'spec_helper'
 require 'benchmark'
 
-describe Text::Table, 'performance' do
+RSpec.describe Text::Table, 'performance' do
   it 'is linear relative to row count' do
     base = time_to_render_num_of_rows  1_000
     time = time_to_render_num_of_rows 10_000

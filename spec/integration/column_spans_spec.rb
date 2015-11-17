@@ -1,6 +1,6 @@
 require 'integration_helper'
 
-describe Text::Table do
+RSpec.describe Text::Table do
   subject { table.to_s }
   let(:table) { Text::Table.new :rows => @rows, :head => @head, :foot => @foot }
 

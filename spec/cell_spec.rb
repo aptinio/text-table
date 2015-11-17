@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Text::Table::Cell do
+RSpec.describe Text::Table::Cell do
   before(:each) do
     @table = Text::Table.new :rows => [[1, {:value => 2, :colspan => 2}, 3]]
     @cell = @table.text_table_rows.first.cells.first

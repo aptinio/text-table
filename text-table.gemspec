@@ -17,6 +17,6 @@ Gem::Specification.new do |gem|
   gem.files = `git ls-files`.split($/)
   gem.test_files = `git ls-files -- spec/*`.split($/)
   gem.extra_rdoc_files = %w[LICENSE README.rdoc]
-  gem.add_development_dependency 'rspec', '~> 2'
+  gem.add_development_dependency 'rspec', '~> 3'
   gem.license = 'MIT'
 end

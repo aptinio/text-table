@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Enumerable do
+RSpec.describe Enumerable do
   describe Array do
     before(:each) do
       @arr = [
