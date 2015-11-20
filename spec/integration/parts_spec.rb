@@ -2,8 +2,8 @@ require 'integration_helper'
 
 RSpec.describe Text::Table do
   let(:table) { Text::Table.new :rows => rows, :head => head, :foot => foot }
-  let(:rows) { @rows }
   let(:head) { nil }
+  let(:rows) { @rows }
   let(:foot) { nil }
   subject { table.to_s }
 
