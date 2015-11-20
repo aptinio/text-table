@@ -15,7 +15,7 @@ RSpec.describe Text::Table do
   subject { table.to_s }
 
   describe 'rows' do
-    it { is_expected.to eq(deindent(%q{
+    xit { is_expected.to eq(deindent(%q{
       +------------+
       | Hello      |
       | こんにちは |
