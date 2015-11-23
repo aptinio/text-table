@@ -1,11 +1,14 @@
 require 'integration_helper'
 
 RSpec.describe Text::Table do
-  let(:table) { Text::Table.new :rows => @rows, :head => @head, :foot => @foot,
-                :horizontal_boundary => horizontal_boundary,
-                :vertical_boundary => vertical_boundary,
-                :boundary_intersection => boundary_intersection,
-                :horizontal_padding => horizontal_padding }
+  let(:table) {
+    args = { :rows => @rows, :head => @head, :foot => @foot }
+    args[:horizontal_boundary] = horizontal_boundary if horizontal_boundary
+    args[:vertical_boundary] = vertical_boundary if vertical_boundary
+    args[:boundary_intersection] = boundary_intersection if boundary_intersection
+    args[:horizontal_padding] = horizontal_padding if horizontal_padding
+    Text::Table.new(args)
+  }
   let(:horizontal_boundary)   { nil }
   let(:vertical_boundary)     { nil }
   let(:boundary_intersection) { nil }
