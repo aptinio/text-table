@@ -4,5 +4,4 @@ rvm:
   - 2.2
   - ruby-head
   - jruby-9.0.4.0
-  - rbx
 script: bundle exec rspec
