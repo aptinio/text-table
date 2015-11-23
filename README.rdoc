@@ -44,6 +44,8 @@ You can also pass an options hash when instantiating a Text::Table:
 
 Just call the <tt>to_table</tt> method (or <tt>to_text_table</tt> if the former is already defined) on Arrays (and other Enumerables).
 
+    require 'text-table/core_ext/enumerable'
+
     array = [
       ['Student', 'Mid-Terms', 'Finals'],
       ['Sam', 94, 93],

@@ -1,31 +1,45 @@
-module Text #:nodoc:
-  class Table
+require 'text-table/cell'
 
-    # A Text::Table::Row belongs to a Text::Table object and can have many Text::Table::Cell objects.
-    # It handles the rendering of rows and inserted separators.
-    #
-    class Row
-      attr_reader :table #:nodoc:
-      attr_reader :cells #:nodoc:
+class Text::Table
+  class Row
+    attr_reader :cells, :table, :align
 
-      def initialize(row_input, table) #:nodoc:
-        @table = table
-        row_input = [row_input].flatten
-        @cells = row_input.first == :separator ? :separator : row_input.map do |cell_input|
-          Cell.new(cell_input.is_a?(Hash) ? cell_input.merge(:row => self) : {:value => cell_input}.merge(:row => self))
-        end
-      end
+    def self.new(row, table)
+      return table.separator if row == :separator
+      super
+    end
 
-      def to_s #:nodoc:
-        if cells == :separator
-          table.separator
-        else
-          ([table.horizontal_boundary] * 2).join(
-            cells.map(&:to_s).join(table.horizontal_boundary)
-          ) + "\n"
-        end
-      end
+    def initialize(row, table)
+      @table = table
+      self.cells = row
+    end
 
+    def cells=(inputs)
+      i = 0
+      @cells = Array(inputs).map { |input|
+        input = input.respond_to?(:to_h) ? input : { value: input }
+        colspan = input[:colspan] ||= 1
+        input = input.merge(row: self, cols: columns[i])
+        # input = input.merge(row: self, cols: (i...(i + colspan)).map { |j| columns[j] })
+        i += colspan
+        Cell.new(input)
+      }
+    end
+
+    def to_s
+      [
+        horizontal_boundary,
+        cells.map(&:to_s).join(horizontal_boundary),
+        horizontal_boundary
+      ].join + "\n"
+    end
+
+    def horizontal_boundary
+      table.horizontal_boundary
+    end
+
+    def columns
+      table.columns
     end
   end
 end

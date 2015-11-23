@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'text-table'
 
 RSpec.configure do |config|
   config.before do

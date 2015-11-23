@@ -1,3 +1,4 @@
+require 'text-table'
 require 'benchmark'
 
 RSpec.describe Text::Table, 'performance' do
@@ -5,14 +6,14 @@ RSpec.describe Text::Table, 'performance' do
     base = time_to_render_num_of_rows  1_000
     time = time_to_render_num_of_rows 10_000
 
-    expect(time).not_to be > base * 20
+    expect(time).to be < base * 20
   end
 
   def time_to_render_num_of_rows(num)
     GC.start
 
     Benchmark.measure {
-      Text::Table.new(:rows => Array.new(num)).to_s
+      Text::Table.new(:rows => Array.new(num) { Array.new(10) { 'foo' } }).to_s
     }.total
   end
 end

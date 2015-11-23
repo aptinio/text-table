@@ -1,51 +1,57 @@
-module Text #:nodoc:
-  class Table
-    class Cell
+class Text::Table
+  class Cell
+    attr_reader :value, :row, :cols, :colspan
 
-      # The object whose <tt>to_s</tt> method is called when rendering the cell.
-      #
-      attr_accessor :value
-      
-      # Text alignment.  Acceptable values are <tt>:left</tt> (default),
-      # <tt>:center</tt> and <tt>:right</tt>
-      #
-      attr_accessor :align
+    def initialize(
+      value: ,
+      row: ,
+      cols: ,
+      align: nil,
+      colspan:
+    )
 
-      # Positive integer specifying the number of columns spanned
-      #
-      attr_accessor :colspan
-      attr_reader :row #:nodoc:
+      @value = String(value)
+      @row = row
+      @cols = cols
+      @align = align
+      @colspan = colspan
+      cols.update_width(self)
+    end
 
-      def initialize(options = {}) #:nodoc:
-        @value  = options[:value].to_s
-        @row     = options[:row]
-        @align   = options[:align  ] || :left
-        @colspan = options[:colspan] || 1
+    def to_s
+      value.send(justification_method, width).center(width + 2 * horizontal_padding)
+    end
+
+    def justification_method
+      case align
+      when :right then :rjust
+      when :center then :center
+      else :ljust
       end
+    end
 
-      def to_s #:nodoc:
-      ([' ' * table.horizontal_padding]*2).join case align
-        when :left
-          value.ljust cell_width
-        when :right
-          value.rjust cell_width
-        when :center
-          value.center cell_width
-        end
-      end
+    def width
+      (cols.width * colspan) + ((colspan - 1) * (2 * horizontal_padding + horizontal_boundary.length))
+    end
 
-      def table #:nodoc:
-        row.table
-      end
+    def align
+      @align || row.align || cols.align || :left
+    end
 
-      def column_index #:nodoc:
-        row.cells[0...row.cells.index(self)].map(&:colspan).inject(0, &:+)
-      end
+    def horizontal_padding
+      table.horizontal_padding
+    end
 
-      def cell_width #:nodoc:
-        (0...colspan).map {|i| table.column_widths[column_index + i]}.inject(&:+) + (colspan - 1)*(2*table.horizontal_padding + table.horizontal_boundary.length)
-      end
+    def horizontal_boundary
+      table.horizontal_boundary
+    end
 
+    def table
+      row.table
+    end
+
+    def value_length
+      value.length
     end
   end
 end

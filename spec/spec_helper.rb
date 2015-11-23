@@ -1,5 +1,3 @@
-require 'text-table'
-
 def deindent(table)
   table.gsub(/^\s*/, '')
 end

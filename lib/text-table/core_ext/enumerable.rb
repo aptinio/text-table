@@ -48,11 +48,12 @@ module Enumerable
   #      #    | Average | 93        | 96     |
   #      #    +---------+-----------+--------+
   #
-  def to_text_table(options = {})
-    table = Text::Table.new :rows => self.to_a.dup
-    table.head = table.rows.shift if options[:first_row_is_head]
-    table.foot = table.rows.pop   if options[:last_row_is_foot]
-    table
+  def to_text_table(first_row_is_head: false, last_row_is_foot: false)
+    rows = self.to_a.dup
+    args = { rows: rows }
+    args[:head] = rows.shift if first_row_is_head
+    args[:foot] = rows.pop   if last_row_is_foot
+    Text::Table.new(args)
   end
   alias_method :to_table, :to_text_table unless method_defined? :to_table
 end

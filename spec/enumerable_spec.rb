@@ -1,3 +1,5 @@
+require 'text-table/core_ext/enumerable'
+
 RSpec.describe Enumerable do
   describe Array do
     before(:each) do
@@ -88,4 +90,3 @@ RSpec.describe Enumerable do
     end
   end
 end
-
