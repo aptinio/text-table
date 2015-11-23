@@ -35,7 +35,10 @@ class Text::Table
     end
 
     def align
-      @align || row.align || cols.align || :left
+      @align ||
+        row.align ||
+        cols.align ||
+        :left
     end
 
     def horizontal_padding
