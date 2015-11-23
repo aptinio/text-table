@@ -45,8 +45,8 @@ RSpec.describe Text::Table do
 
       context 'with spanned cells' do
         before do
-          table.rows << :separator
-          table.rows << [{ :value => 'x', :colspan => 2, :align => :right }, 'c', 'd']
+          @rows << :separator
+          @rows << [{ :value => 'x', :colspan => 2, :align => :right }, 'c', 'd']
         end
 
         it { is_expected.to eq(deindent(%q{

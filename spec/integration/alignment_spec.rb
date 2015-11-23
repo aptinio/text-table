@@ -147,10 +147,10 @@ RSpec.describe Text::Table do
   describe 'table-wide alignment' do
     context 'of columns' do
       before do
-        table.rows[1][2] = {:value => 'c', :align => :center}
-        table.rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
-        table.rows << :separator
-        table.rows << ['a', 'b', {:value => 'x', :colspan => 2}]
+        @rows[1][2] = {:value => 'c', :align => :center}
+        @rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
+        @rows << :separator
+        @rows << ['a', 'b', {:value => 'x', :colspan => 2}]
         table.align_column 2, :right
         table.align_column 3, :right
       end

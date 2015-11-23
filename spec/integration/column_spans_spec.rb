@@ -7,7 +7,7 @@ RSpec.describe Text::Table do
   describe 'first column spanned' do
     context '2 cells wide' do
       before do
-        table.rows << [{ :value => 'x', :colspan => 2, :align => align }, 'c', 'd']
+        @rows << [{ :value => 'x', :colspan => 2, :align => align }, 'c', 'd']
       end
 
       context 'aligned to the left' do
@@ -61,7 +61,7 @@ RSpec.describe Text::Table do
 
     context '3 cells wide' do
       before do
-        table.rows << [{ :value => 'x', :colspan => 3, :align => align }, 'd']
+        @rows << [{ :value => 'x', :colspan => 3, :align => align }, 'd']
       end
 
       context 'aligned to the left' do
@@ -117,7 +117,7 @@ RSpec.describe Text::Table do
   describe 'last column spanned' do
     context '2 cells wide' do
       before do
-        table.rows << ['a', 'b', { :value => 'x', :colspan => 2, :align => align }]
+        @rows << ['a', 'b', { :value => 'x', :colspan => 2, :align => align }]
       end
 
       context 'aligned to the left' do
@@ -171,7 +171,7 @@ RSpec.describe Text::Table do
 
     context '3 cells wide' do
       before do
-        table.rows << ['a', { :value => 'x', :colspan => 3, :align => align }]
+        @rows << ['a', { :value => 'x', :colspan => 3, :align => align }]
       end
 
       context 'aligned to the left' do
