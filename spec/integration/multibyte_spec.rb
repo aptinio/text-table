@@ -1,4 +1,3 @@
-# coding: utf-8
 require 'integration_helper'
 
 RSpec.describe Text::Table do
