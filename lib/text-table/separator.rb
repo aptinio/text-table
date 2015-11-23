@@ -1,3 +1,5 @@
+require 'delegate'
+
 class Text::Table
   class Separator < SimpleDelegator
     def to_s
