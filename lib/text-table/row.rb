@@ -18,9 +18,11 @@ class Text::Table
       i = 0
       @cells = Array(inputs).map { |input|
         input = input.respond_to?(:to_h) ? input : { value: input }
-        colspan = input[:colspan] ||= 1
-        input = input.merge(row: self, cols: columns[i])
-        # input = input.merge(row: self, cols: (i...(i + colspan)).map { |j| columns[j] })
+        colspan = input.delete(:colspan) { |_| 1 }
+        input = input.merge(
+          row: self,
+          cols: (i...(i + colspan)).map { |j| columns[j] }
+        )
         i += colspan
         Cell.new(input)
       }

@@ -48,8 +48,8 @@ class Text::Table
 
   def width
     columns.values.map(&:width).reduce(&:+) +
-      (horizontal_padding * 2 * columns.size) +
-      (horizontal_boundary.length * (columns.size + 1))
+      columns.size * distance_between_cols +
+      horizontal_boundary.length
   end
 
   def head=(head)
@@ -66,6 +66,10 @@ class Text::Table
 
   def align_column(number, align)
     columns[number - 1].align = align
+  end
+
+  def distance_between_cols
+    2 * horizontal_padding + horizontal_boundary.length
   end
 end
 
