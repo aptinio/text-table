@@ -26,15 +26,15 @@ class Text::Table
       total_width = cols.map(&:width).reduce(&:+) +
         (colspan - 1) * distance_between_cols
 
-      return if total_width > value_length
+      return if total_width > value_width
 
-      remaining = value_length
+      remaining = value_width
 
       cols[0..-2].each do |col|
         width = if total_width > 0
-          (col.width.to_f / total_width * value_length)
+          (col.width.to_f / total_width * value_width)
         else
-          (value_length / colspan)
+          (value_width / colspan)
         end.round
 
         col.width = [col.width, width].max
@@ -71,7 +71,7 @@ class Text::Table
         :left
     end
 
-    def value_length
+    def value_width
       value.length
     end
   end
