@@ -27,7 +27,7 @@ module Enumerable
   #      #    | Average | 93        | 96     |
   #      #    +---------+-----------+--------+
   #
-  #      puts array.to_text_table(:first_row_is_head => true)
+  #      puts array.to_text_table(first_row_is_head: true)
   #
   #      #    +---------+-----------+--------+
   #      #    | Student | Mid-Terms | Finals |
@@ -37,7 +37,7 @@ module Enumerable
   #      #    | Average | 93        | 96     |
   #      #    +---------+-----------+--------+
   #
-  #      puts array.to_text_table(:first_row_is_head => true, :last_row_is_foot => true)
+  #      puts array.to_text_table(first_row_is_head: true, last_row_is_foot: true)
   #
   #      #    +---------+-----------+--------+
   #      #    | Student | Mid-Terms | Finals |

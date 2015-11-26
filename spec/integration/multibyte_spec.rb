@@ -1,7 +1,7 @@
 require 'integration_helper'
 
-RSpec.describe Text::Table do
-  let(:table) { Text::Table.new :rows => rows }
+RSpec.describe Text::Table, 'with multibyte cells' do
+  let(:table) { Text::Table.new rows: rows }
   let(:rows) do
     [
       ["Hello"],

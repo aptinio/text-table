@@ -37,7 +37,7 @@ Text::Table is compatible with Ruby 1.8.6, 1.8.7 and 1.9.1 and includes a compre
 
 You can also pass an options hash when instantiating a Text::Table:
 
-    table = Text::Table.new(:head => ['A', 'B'], :rows => [['a1', 'b1'], ['a2', 'b2']])
+    table = Text::Table.new(head: ['A', 'B'], rows: [['a1', 'b1'], ['a2', 'b2']])
 
 
 == Calling the <tt>to_table</tt> Method
@@ -64,7 +64,7 @@ Just call the <tt>to_table</tt> method (or <tt>to_text_table</tt> if the former 
 
 You could specify that the first row is the table heading.
 
-    puts array.to_table(:first_row_is_head => true)
+    puts array.to_table(first_row_is_head: true)
 
     #    +---------+-----------+--------+
     #    | Student | Mid-Terms | Finals |
@@ -76,7 +76,7 @@ You could specify that the first row is the table heading.
 
 You could also specify that the last row is the table footer.
 
-    puts array.to_table(:first_row_is_head => true, :last_row_is_foot => true)
+    puts array.to_table(first_row_is_head: true, last_row_is_foot: true)
 
     #    +---------+-----------+--------+
     #    | Student | Mid-Terms | Finals |
@@ -99,9 +99,9 @@ Cells and footers are aligned to the left by default, while headers are centered
     table = Text::Table.new
     table.head = ['Heading A', 'Heading B']
     table.rows << ['a1', 'b1']
-    table.rows << ['a2', {:value => 'b2', :align => :right}]
+    table.rows << ['a2', {value: 'b2', align: :right}]
     table.rows << ['a3', 'b3']
-    table.rows << [{:value => 'a4', :colspan => 2, :align => :center}]
+    table.rows << [{value: 'a4', colspan: 2, align: :center}]
 
     puts table
 
@@ -116,7 +116,7 @@ Cells and footers are aligned to the left by default, while headers are centered
 
 There's also an easy way to align columns:
 
-    table = Text::Table.new :rows => [%w(a bb), %w(aa bbb), %w(aaa b)]
+    table = Text::Table.new rows: [%w(a bb), %w(aa bbb), %w(aaa b)]
     puts table
 
     #    +-----+-----+
@@ -140,7 +140,7 @@ Note that headers, spanned cells and cells with explicit alignments are not affe
 
 You can add a separator by inserting <tt>:separator</tt> symbols between the rows.
 
-    Text::Table.new :rows => [
+    Text::Table.new rows: [
       ['a', 'b'],
       ['c', 'd'],
       :separator,
@@ -163,11 +163,11 @@ You can add a separator by inserting <tt>:separator</tt> symbols between the row
 
 Cell padding and table boundaries can be modified.
 
-    Text::Table.new :rows => [['a', 'b'], ['c', 'd']],
-                    :horizontal_padding    => 3,
-                    :vertical_boundary     => '=',
-                    :horizontal_boundary   => ':',
-                    :boundary_intersection => 'O'
+    Text::Table.new rows: [['a', 'b'], ['c', 'd']],
+                    horizontal_padding:     3,
+                    vertical_boundary:      '=',
+                    horizontal_boundary:    ':',
+                    boundary_intersection: 'O'
 
     #    O=======O=======O
     #    :   a   :   b   :

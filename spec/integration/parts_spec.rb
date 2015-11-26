@@ -1,7 +1,7 @@
 require 'integration_helper'
 
 RSpec.describe Text::Table do
-  let(:table) { Text::Table.new :rows => rows, :head => head, :foot => foot }
+  let(:table) { Text::Table.new rows: rows, head: head, foot: foot }
   let(:head) { nil }
   let(:rows) { @rows }
   let(:foot) { nil }

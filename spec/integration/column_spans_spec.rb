@@ -2,13 +2,13 @@ require 'integration_helper'
 
 RSpec.describe Text::Table do
   subject { table.to_s }
-  let(:table) { Text::Table.new :rows => @rows, :head => @head, :foot => @foot }
+  let(:table) { Text::Table.new rows: @rows, head: @head, foot: @foot }
 
   describe 'first column spanned' do
     context '2 cells wide' do
       before do
-        @rows << [{ :value => 'x', :colspan => 2, :align => align }, 'c', 'd']
-        @rows << [{ :value => 'xxxxxxxxxxxxx', :colspan => 2, :align => align }, 'c', 'd']
+        @rows << [{ value: 'x', colspan: 2, align: align }, 'c', 'd']
+        @rows << [{ value: 'xxxxxxxxxxxxx', colspan: 2, align: align }, 'c', 'd']
       end
 
       context 'aligned to the left' do
@@ -65,8 +65,8 @@ RSpec.describe Text::Table do
 
     context '3 cells wide' do
       before do
-        @rows << [{ :value => 'x', :colspan => 3, :align => align }, 'd']
-        @rows << [{ :value => 'xxxxxxxxxxxxxxxxxxx', :colspan => 3, :align => align }, 'd']
+        @rows << [{ value: 'x', colspan: 3, align: align }, 'd']
+        @rows << [{ value: 'xxxxxxxxxxxxxxxxxxx', colspan: 3, align: align }, 'd']
       end
 
       context 'aligned to the left' do
@@ -125,8 +125,8 @@ RSpec.describe Text::Table do
   describe 'last column spanned' do
     context '2 cells wide' do
       before do
-        @rows << ['a', 'b', { :value => 'x', :colspan => 2, :align => align }]
-        @rows << ['a', 'b', { :value => 'xxxxxxxxxxx', :colspan => 2, :align => align }]
+        @rows << ['a', 'b', { value: 'x', colspan: 2, align: align }]
+        @rows << ['a', 'b', { value: 'xxxxxxxxxxx', colspan: 2, align: align }]
       end
 
       context 'aligned to the left' do
@@ -183,8 +183,8 @@ RSpec.describe Text::Table do
 
     context '3 cells wide' do
       before do
-        @rows << ['a', { :value => 'x', :colspan => 3, :align => align }]
-        @rows << ['a', { :value => 'xxxxxxxxxxxxxxxxxxx', :colspan => 3, :align => align }]
+        @rows << ['a', { value: 'x', colspan: 3, align: align }]
+        @rows << ['a', { value: 'xxxxxxxxxxxxxxxxxxx', colspan: 3, align: align }]
       end
 
       context 'aligned to the left' do

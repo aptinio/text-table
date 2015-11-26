@@ -13,7 +13,7 @@ RSpec.describe Text::Table, 'performance' do
     GC.start
 
     Benchmark.measure {
-      Text::Table.new(:rows => Array.new(num) { Array.new(10) { 'foo' } }).to_s
+      Text::Table.new(rows: Array.new(num) { Array.new(10) { 'foo' } }).to_s
     }.total
   end
 end

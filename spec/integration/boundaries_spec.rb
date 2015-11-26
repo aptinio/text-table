@@ -2,7 +2,7 @@ require 'integration_helper'
 
 RSpec.describe Text::Table do
   let(:table) {
-    args = { :rows => @rows, :head => @head, :foot => @foot }
+    args = { rows: @rows, head: @head, foot: @foot }
     args[:horizontal_boundary] = horizontal_boundary if horizontal_boundary
     args[:vertical_boundary] = vertical_boundary if vertical_boundary
     args[:boundary_intersection] = boundary_intersection if boundary_intersection
@@ -49,7 +49,7 @@ RSpec.describe Text::Table do
       context 'with spanned cells' do
         before do
           @rows << :separator
-          @rows << [{ :value => 'x', :colspan => 2, :align => :right }, 'c', 'd']
+          @rows << [{ value: 'x', colspan: 2, align: :right }, 'c', 'd']
         end
 
         it { is_expected.to eq(deindent(%q{

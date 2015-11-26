@@ -9,6 +9,6 @@ RSpec.configure do |config|
             %w( aaa  bbbb c    dd   ),
     ]
     @foot = %w( aaaa b    cc   ddd  )
-    @table = Text::Table.new :rows => @rows, :head => @head, :foot => @foot
+    @table = Text::Table.new rows: @rows, head: @head, foot: @foot
   end
 end

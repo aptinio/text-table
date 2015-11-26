@@ -1,14 +1,14 @@
 require 'integration_helper'
 
 RSpec.describe Text::Table do
-  let(:table) { Text::Table.new :rows => rows, :head => head, :foot => foot }
+  let(:table) { Text::Table.new rows: rows, head: head, foot: foot }
   let(:rows) { @rows }
   let(:head) { @head }
   let(:foot) { @foot }
   subject { table.to_s }
 
   describe 'header alignment' do
-    let(:head) { @head.map { |heading| { :value => heading, :align => align } } }
+    let(:head) { @head.map { |heading| { value: heading, align: align } } }
     let(:foot) { nil }
 
     context 'when left' do
@@ -52,7 +52,7 @@ RSpec.describe Text::Table do
   end
 
   describe 'cell alignment' do
-    let(:rows) { @rows.map { |row| row.map { |cell| { :value => cell, :align => align } } } }
+    let(:rows) { @rows.map { |row| row.map { |cell| { value: cell, align: align } } } }
 
     context 'when left' do
       let(:align) { :left }
@@ -102,7 +102,7 @@ RSpec.describe Text::Table do
 
   describe 'footer alignment' do
     let(:head) { nil }
-    let(:foot) { @foot.map { |footing| { :value => footing, :align => align } } }
+    let(:foot) { @foot.map { |footing| { value: footing, align: align } } }
 
     context 'when left' do
       let(:align) { :left }
@@ -147,10 +147,10 @@ RSpec.describe Text::Table do
   describe 'table-wide alignment' do
     context 'of columns' do
       before do
-        @rows[1][2] = {:value => 'c', :align => :center}
-        @rows << [{:value => 'x', :colspan => 2}, 'c', 'd']
+        @rows[1][2] = {value: 'c', align: :center}
+        @rows << [{value: 'x', colspan: 2}, 'c', 'd']
         @rows << :separator
-        @rows << ['a', 'b', {:value => 'x', :colspan => 2}]
+        @rows << ['a', 'b', {value: 'x', colspan: 2}]
         table.align_column 2, :right
         table.align_column 3, :right
       end

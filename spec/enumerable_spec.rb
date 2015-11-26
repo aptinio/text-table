@@ -31,7 +31,7 @@ RSpec.describe Enumerable do
     end
 
     it "to Text::Table, setting first row as head" do
-      expect(@arr.to_text_table(:first_row_is_head => true).to_s).to eq(deindent(%q{
+      expect(@arr.to_text_table(first_row_is_head: true).to_s).to eq(deindent(%q{
         +----+-----+------+
         | 11 |  2  | 3333 |
         +----+-----+------+
@@ -42,7 +42,7 @@ RSpec.describe Enumerable do
     end
 
     it "to Text::Table, setting last row as foot" do
-      expect(@arr.to_text_table(:last_row_is_foot => true).to_s).to eq(deindent(%q{
+      expect(@arr.to_text_table(last_row_is_foot: true).to_s).to eq(deindent(%q{
         +----+-----+------+
         | 11 | 2   | 3333 |
         | 44 | 56  | 6    |
@@ -56,7 +56,7 @@ RSpec.describe Enumerable do
   describe Hash do
     before(:each) do
       @hsh = {
-        :k  => 'vv',
+        k:   'vv',
         'k' =>  :vv
       }
     end
@@ -70,7 +70,7 @@ RSpec.describe Enumerable do
     end
 
     it "to Text::Table, setting first row as head" do
-      expect(@hsh.to_text_table(:first_row_is_head => true).to_s).to eq(deindent(%q{
+      expect(@hsh.to_text_table(first_row_is_head: true).to_s).to eq(deindent(%q{
         +---+----+
         | k | vv |
         +---+----+
@@ -80,7 +80,7 @@ RSpec.describe Enumerable do
     end
 
     it "to Text::Table, setting last row as foot" do
-      expect(@hsh.to_text_table(:last_row_is_foot => true).to_s).to eq(deindent(%q{
+      expect(@hsh.to_text_table(last_row_is_foot: true).to_s).to eq(deindent(%q{
         +---+----+
         | k | vv |
         +---+----+
