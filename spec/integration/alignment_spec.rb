@@ -14,40 +14,40 @@ describe Text::Table do
     context 'when left' do
       let(:align) { :left }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +-----+------+------+------+
         | a   | bb   | ccc  | dddd |
         +-----+------+------+------+
         | aa  | bbb  | cccc | d    |
         | aaa | bbbb | c    | dd   |
         +-----+------+------+------+
-      }) }
+      })) }
     end
 
     context 'when center' do
       let(:align) { :center }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +-----+------+------+------+
         |  a  |  bb  | ccc  | dddd |
         +-----+------+------+------+
         | aa  | bbb  | cccc | d    |
         | aaa | bbbb | c    | dd   |
         +-----+------+------+------+
-      }) }
+      })) }
     end
 
     context 'when right' do
       let(:align) { :right }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +-----+------+------+------+
         |   a |   bb |  ccc | dddd |
         +-----+------+------+------+
         | aa  | bbb  | cccc | d    |
         | aaa | bbbb | c    | dd   |
         +-----+------+------+------+
-      }) }
+      })) }
     end
   end
 
@@ -57,7 +57,7 @@ describe Text::Table do
     context 'when left' do
       let(:align) { :left }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+------+
         |  a   |  bb  | ccc  | dddd |
         +------+------+------+------+
@@ -66,13 +66,13 @@ describe Text::Table do
         +------+------+------+------+
         | aaaa | b    | cc   | ddd  |
         +------+------+------+------+
-      }) }
+      })) }
     end
 
     context 'when center' do
       let(:align) { :center }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+------+
         |  a   |  bb  | ccc  | dddd |
         +------+------+------+------+
@@ -81,13 +81,13 @@ describe Text::Table do
         +------+------+------+------+
         | aaaa | b    | cc   | ddd  |
         +------+------+------+------+
-      }) }
+      })) }
     end
 
     context 'when right' do
       let(:align) { :right }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+------+
         |  a   |  bb  | ccc  | dddd |
         +------+------+------+------+
@@ -96,7 +96,7 @@ describe Text::Table do
         +------+------+------+------+
         | aaaa | b    | cc   | ddd  |
         +------+------+------+------+
-      }) }
+      })) }
     end
   end
 
@@ -107,40 +107,40 @@ describe Text::Table do
     context 'when left' do
       let(:align) { :left }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+-----+
         | aa   | bbb  | cccc | d   |
         | aaa  | bbbb | c    | dd  |
         +------+------+------+-----+
         | aaaa | b    | cc   | ddd |
         +------+------+------+-----+
-      }) }
+      })) }
     end
 
     context 'when center' do
       let(:align) { :center }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+-----+
         | aa   | bbb  | cccc | d   |
         | aaa  | bbbb | c    | dd  |
         +------+------+------+-----+
         | aaaa |  b   |  cc  | ddd |
         +------+------+------+-----+
-      }) }
+      })) }
     end
 
     context 'when right' do
       let(:align) { :right }
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+-----+
         | aa   | bbb  | cccc | d   |
         | aaa  | bbbb | c    | dd  |
         +------+------+------+-----+
         | aaaa |    b |   cc | ddd |
         +------+------+------+-----+
-      }) }
+      })) }
     end
   end
 
@@ -155,7 +155,7 @@ describe Text::Table do
         table.align_column 3, :right
       end
 
-      it { should == deindent(%q{
+      it { is_expected.to eq(deindent(%q{
         +------+------+------+------+
         |  a   |  bb  | ccc  | dddd |
         +------+------+------+------+
@@ -167,19 +167,19 @@ describe Text::Table do
         +------+------+------+------+
         | aaaa |    b |   cc | ddd  |
         +------+------+------+------+
-      }) }
+      })) }
     end
 
     context 'of rows' do
-      pending
+      skip
     end
 
     context 'of headers' do
-      pending
+      skip
     end
 
     context 'of footers' do
-      pending
+      skip
     end
   end
 end
